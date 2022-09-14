@@ -1,0 +1,92 @@
+<root>
+   <name>Seguridad</name>
+   <key>Seguridad</key>
+   <state>stable</state>
+   <logo>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/icon.png</logo>
+   <description>
+      <short>
+         <es>El plugin seguridad le permite agregar una capa de seguridad sobre la página de Login bloqueando la página durante 5 minutos si se intentan logar más de 3 veces incorrectamente.>
+         <en>The security plugin allows you to add a layer of security over the Login page by locking the page for 5 minutes if you try to login more than 3 times incorrectly.</en>
+         <fr>Le plugin de sécurité vous permet d'ajouter une couche de sécurité sur la page de connexion en verrouillant la page pendant 5 minutes si vous essayez de vous connecter plus de 3 fois de manière incorrecte.</fr>
+      </short>
+      <long>
+         <es>
+El plugin seguridad le permite agregar una capa de seguridad sobre la página de Login bloqueando la página durante 5 minutos si se intentan logar más de 3 veces incorrectamente.
+
+Desde el objeto usuario se puede desbloquear un usuario en la pestaña Bloqueo Temporal.
+
+Se puede configurar el número de intentos y el tiempo de bloqueo en segundos desde el enlace de complementos.
+
+Administración de permisos para 'Gestión de Seguridad' y 'Desbloqueo de Usuarios' por perfil.
+
+Se puede consultar un LOG de sesiones diarias por cada usuario.
+
+         </es>
+         <en>
+The security plugin allows you to add a layer of security over the Login page by blocking the page for 5 minutes if more than 3 incorrect login attempts are made.
+
+From the user object a user can be unblocked in the Temporary Block tab.
+
+You can set the number of attempts and the block time in seconds from the plugins link.
+
+Permission management for 'Security Management' and 'User Unlock' by profile.
+
+A LOG of daily sessions can be consulted for each user.
+         </en>
+         <fr>
+Le plugin de sécurité vous permet d'ajouter une couche de sécurité sur la page de connexion en bloquant la page pendant 5 minutes si plus de 3 tentatives de connexion incorrectes sont effectuées.
+
+À partir de l'objet utilisateur, un utilisateur peut être débloqué dans l'onglet Blocage temporaire.
+
+Vous pouvez définir le nombre de tentatives et le temps de blocage en secondes à partir du lien des plugins.
+
+Gestion des autorisations pour 'Security Management' et 'User Unlock' par profil.
+
+Un LOG des sessions quotidiennes peut être consulté pour chaque utilisateur.
+         </fr>
+      </long>
+   </description>
+   <homepage>https://github.com/calidadcarm/seguridad/</homepage>
+   <download>https://github.com/calidadcarm/seguridad/releases/</download>
+   <issues>https://github.com/calidadcarm/seguridad/issues</issues>
+   <readme>https://github.com/calidadcarm/seguridad/blob/main/README.md</readme>
+   <authors>
+      <author>CARM</author>
+   </authors>
+   <versions>
+      <version>
+         <num>1.0.0</num>
+         <compatibility>~9.4.6</compatibility>
+         <download_url>https://github.com/calidadcarm/seguridad/releases/tag/seguridad_1.0.0_Glpi_9.4.x</download_url>
+      </version>
+      <version>
+         <num>1.1.0</num>
+         <compatibility>~9.5.8</compatibility>
+         <download_url>https://github.com/calidadcarm/seguridad/releases/tag/seguridad_1.1.0_Glpi_9.5.x</download_url>
+      </version>      
+   </versions>
+   <langs>
+      <lang>es_ES</lang>
+   </langs>
+   <license>AGPL3</license>
+   <tags>
+      <es>
+         <tag>seguridad</tag>     
+      </es>
+      <en>
+         <tag>segurity</tag>         
+      </en>
+      <fr>
+         <tag>sécurité</tag>         
+      </fr>
+   </tags>
+   <screenshots>
+      <screenshot>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/screenshot.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/screenshot1.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/screenshot2.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/screenshot3.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/screenshot4.png</screenshot>
+	  <screenshot>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/screenshot5.png</screenshot>
+	  <screenshot>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/screenshot6.png</screenshot>
+   </screenshots>
+</root>

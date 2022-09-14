@@ -1,0 +1,197 @@
+/**
+ * ---------------------------------------------------------------------
+ * GLPI - Gestionnaire Libre de Parc Informatique
+ * Copyright (C) 2015-2018 Teclib' and contributors.
+ *
+ * https://github.com/calidadcarm/seguridad
+ *
+ * based on GLPI - Gestionnaire Libre de Parc Informatique
+ * Copyright (C) 2003-2014 by the CARM Development Team.
+ *
+ * ---------------------------------------------------------------------
+ *
+ * LICENSE
+ *
+ * This file is part of GLPI.
+ *
+ * GLPI is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * GLPI is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with GLPI. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Original Author of file: Javier David Marín Zafrilla
+ *
+ * ---------------------------------------------------------------------
+*/
+
+/* ################--------------- GLPI CSS style   ---------------#################### */
+
+/* ################--------------- Media queries break   ---------------#################### */
+
+$break_sphones: 490px;
+$break_phones: 440px;
+$break_Lphones: 430px;
+
+
+/* empty file */
+// Incluir ultima fecha de inicio de sesion con exito en la barra superior  
+   #time_sesion > {
+   a, span {
+      display: inline-block;
+      padding: .2em 8em;
+      font-weight: bold;
+	  color: white;
+	  font-size:11px;
+	  left:0px;
+	  top:10px;
+	  position:absolute;
+   }
+}
+
+
+@media screen and (max-width: $break_sphones) {
+   #time_sesion > {
+   a, span {
+      display: inline-block;
+      padding: 1.4em 5em;
+      font-weight: bold;
+	  color: white;
+	  font-size:13px;  
+	   	  top:2.0px;
+	  	  position:relative;
+   }  }
+}
+
+@media screen and (max-width: $break_phones) {
+   #time_sesion > {
+   a, span {
+      display: inline-block;
+      padding: 1.4em 5em;
+      font-weight: bold;
+	  color: white;
+	  font-size:13px;  
+	  	  top:2.0px;
+	  	  position:relative;
+   }  }
+}
+
+
+@media screen and (max-width: $break_Lphones) {
+   #time_sesion > {
+   a, span {
+      display: inline-block;
+      padding: .8em 2.8em;
+      font-weight: bold;
+	  color: white;
+	  font-size:13px;  
+	  	  position:relative;
+   }  }
+}
+
+// Incluir ultima fecha de inicio de sesion con exito en la barra superior 
+
+
+.sesion_ok {
+	
+	font-size: 16px;
+	color: green;
+	
+}	
+
+.sesion_ko {
+	
+	font-size: 16px; 
+	color: red;
+		
+}
+
+/// VENTANA AVISO LEGAL
+
+		#overbox3 {
+		    position: fixed;
+		    bottom: 0px;
+		    left: 0px;
+		    width: 100%;
+		    z-index: 999999;
+		    display: block;
+		}
+		
+				
+				#infobox3:hover{
+		background-color: #f9f262;		
+		}	
+		
+		#infobox3 {
+		    margin: auto;
+		    position: relative;
+		    height: 157px;
+		    width: 100%;
+		    text-align:justify;
+		    background-color: #ddded9;
+			display:none;
+		}
+		#infobox3 p {
+		    line-height:58px;
+		    font-size:13px;
+		    text-align:justify;
+		}
+		#button_close {		    
+		    text-decoration: underline;
+			 position: absolute;
+			 margin: 20px 0px 0 20px;
+			  z-index: 999999;			
+		}
+		
+		#button_cerrar{
+		background-color: #ffffff;		
+		}
+
+		#button_cerrar:hover{
+		background-color: yellow;		
+		}		
+		
+		.sesion_warning {
+		   padding: 2.5em;   
+		   font: bold 13px Arial, Helvetica;
+		   color: #8f5a0a;
+		   background-color: #9a9b94;
+		   color: white;
+		   text-align: justify;
+		   margin: 10px;
+		   float:center;
+		   position: absolute;
+
+		   .sesion_msg {
+				  color:white;
+				  width: 70%; 
+				  padding: 0px; /* if you want space between the images */
+				  margin-left: auto;
+				  margin-right: auto;
+				  line-height:24px;
+		   }
+
+		   .sesion_msg li {
+			  margin-bottom: .5em;
+
+			  &:last-child {
+				 margin-bottom: 0;
+			  }
+			 
+		   }
+		   
+		   .sesion_msg .fa {
+			  color: white;
+			  float: left;
+			  margin-right: .2em;
+		   }
+		}
+
+/// VENTANA AVISO LEGAL
