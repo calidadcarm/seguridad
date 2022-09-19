@@ -35,15 +35,34 @@
 // Class of the defined type
 class PluginSeguridadSeguridad extends CommonDBTM {
    
-   public $dohistory=true; // EN LA CABECERA
-   static $tags = '[EXAMPLE_ID]';
+   public $dohistory=true; // EN LA CABECERA   
    static $rightname = "plugin_seguridad";
 
    // Should return the localized name of the type
    static function getTypeName($nb = 0) {
       return 'Seguridad';
    }
+
+   static function getIcon() {
+      return "fas fa-user-lock";
+   }     
    
+   static function getMenuContent() {
+
+      $menu['page'] = "/plugins/seguridad/front/seguridad.php";
+      $menu['title'] = self::getTypeName();
+      $menu['icon']   = self::getIcon();
+      $menu['links']['search'] = "/plugins/seguridad/front/seguridad.php";
+
+      $menu['options']['PluginSeguridadConfig']['page']               = "/plugins/seguridad/front/config.php";
+      $menu['options']['PluginSeguridadConfig']['title']              = PluginSeguridadConfig::getTypeName();
+    //$menu['options']['PluginSeguridadConfig']['links']['add']       = '/plugins/seguridad/front/config.form.php';
+    //$menu['options']['PluginSeguridadConfig']['links']['search']    = '/plugins/seguridad/front/config.php';
+      $menu['options']['PluginSeguridadConfig']['icon']               = PluginSeguridadConfig::getIcon();      
+
+	  return $menu;
+   }
+
    static function canView() {
 	
 		if ((isset($_REQUEST["_itemtype"])) and ($_REQUEST["_itemtype"]=="User")) {		
@@ -56,7 +75,7 @@ class PluginSeguridadSeguridad extends CommonDBTM {
    
    static function canCreate() {
 
-	return false;
+	return true;
 
    }   
    
@@ -151,7 +170,21 @@ class PluginSeguridadSeguridad extends CommonDBTM {
 				</td>
 			  </tr>';
 				 
-		 Session::addMessageAfterRedirect($tabla);			 
+		 Session::addMessageAfterRedirect($tabla);	
+       
+      //Displayprefs
+      $prefs = [2 => 1, 4 => 2, 5 => 3, 3 => 4];
+      foreach ($prefs as $num => $rank) {
+         if (!countElementsInTable("glpi_displaypreferences",
+                                   ['itemtype' => __CLASS__, 'num' => $num, 'users_id' => 0])) {
+            $preference      = new DisplayPreference();
+            $tmp['itemtype'] = __CLASS__;
+            $tmp['num']      = $num;
+            $tmp['rank']     = $rank;
+            $tmp['users_id'] = 0;
+            $preference->add($tmp);
+         }
+      }       
 		 
       }
    } 
@@ -185,7 +218,7 @@ class PluginSeguridadSeguridad extends CommonDBTM {
 
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
-	  $this->getFromDB($ID);
+	   $this->getFromDB($ID);
 	  
 	  if (!empty($this->fields['users_id'])){
 	  
@@ -229,8 +262,8 @@ echo '<th colspan="4" class="">Datos de Usuario (ID '.$this->fields['users_id'].
 				          echo "<div class='fa-label'>
             <i class='fas fa-user-secret fa-fw'
                title='Login'></i>";
-			   
-			   Html::autocompletionTextField($this,"name",array('size' => "124"));
+            echo Html::input('name', ['value' => $this->fields['name']]);
+			 //Html::autocompletionTextField($this,"name",array('size' => "124"));
 			   
             echo "</div>";
 				echo "</td>";
@@ -288,7 +321,8 @@ echo '<th colspan="4" class="">Datos de Usuario (ID '.$this->fields['users_id'].
                title='Fecha Creación'></i>";
 			  
  			   if (!empty($this->fields['users_id'])){
-			   Html::autocompletionTextField($usuario,"date_creation",array('size' => "124"));
+               echo Html::input('date_creation', ['value' => $usuario->fields['date_creation']]);
+			    //Html::autocompletionTextField($usuario,"date_creation",array('size' => "124"));
 			   } else {
 echo  "<input type='text' id='name' name='name' required value='' >";
 			   }				   
@@ -316,8 +350,8 @@ echo '<tr><td colspan="4" class=""></td></tr>';
 				          echo "<div class='fa-label'>
             <i class='fas fa-desktop fa-fw'
                title='".__('IP')."'></i>";
-			   
-			   Html::autocompletionTextField($this,"ip",array('size' => "124"));
+            echo Html::input('ip', ['value' => $this->fields['ip']]);
+			 //Html::autocompletionTextField($this,"ip",array('size' => "124"));
 			   
             echo "</div>";
 				echo "</td>";
@@ -361,7 +395,7 @@ $query="SELECT name as 'Elemento', count(name) as 'Repeticiones',  DATE_FORMAT(d
 
          if ($DB->numrows($result) > 0) {
             
-            while ($data = $DB->fetch_assoc($result)) {
+            while ($data = $DB->fetchAssoc($result)) {
 
 				$sesiones_fallidas=$data["Repeticiones"];
 				$locked=(isset ($data["locked"])) ? $data["locked"] : 0;
@@ -576,7 +610,7 @@ group by DATE_FORMAT(date, '%Y-%m-%d')) as contador on consulta.user = contador.
 
          if ($DB->numrows($result) > 0) {
             
-            while ($data = $DB->fetch_assoc($result)) {
+            while ($data = $DB->fetchAssoc($result)) {
  
  if (empty($data["user"])){
 	 

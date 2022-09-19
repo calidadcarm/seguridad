@@ -31,7 +31,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-define ('PLUGIN_SEGURIDAD_VERSION', '1.0.0');
+define ('PLUGIN_SEGURIDAD_VERSION', '1.2.0');
 
 /**
  * Init hooks of the plugin.
@@ -68,11 +68,7 @@ function plugin_init_seguridad() {
 		Plugin::registerClass('PluginSeguridadStatistic', 
 		array('addtabon' => array('PluginSeguridadSeguridad'))); // Estadisticas de Sesiones						  
 //[jmz18g] [final] sesion seguridad deshabilitado	
-   if (version_compare(GLPI_VERSION, '9.4', 'ge')) {
-      if (class_exists('PluginSeguridadSeguridad')) {
-         Link::registerTag(PluginSeguridadSeguridad::$tags);
-      }
-   }
+
    // Display a menu entry ?
 
      $PLUGIN_HOOKS['add_javascript']['seguridad'] = array('js/seguridad.js');
@@ -98,7 +94,7 @@ function plugin_init_seguridad() {
 
    // Config page
    if (Session::haveRight('config', UPDATE)) {
-      $PLUGIN_HOOKS['config_page']['seguridad'] = 'front/seguridad.php';
+      $PLUGIN_HOOKS['config_page']['seguridad'] = 'front/config.form.php?id=1';
    }
    
 //[jmz18g] [final] sesion seguridad deshabilitado
@@ -147,7 +143,7 @@ function plugin_version_seguridad() {
       'homepage'       => 'http://www.carm.es',
       'requirements'   => [
          'glpi' => [
-            'min' => '9.4',
+            'min' => '9.5',
             'dev' => true
          ]
       ]
@@ -164,8 +160,8 @@ function plugin_version_seguridad() {
 function plugin_seguridad_check_prerequisites() {
 
    $version = rtrim(GLPI_VERSION, '-dev');
-   if (version_compare($version, '9.4', 'lt')) {
-      echo "This plugin requires GLPI 9.4";
+   if (version_compare($version, '9.5', 'lt')) {
+      echo "This plugin requires GLPI 9.5";
       return false;
    }
 

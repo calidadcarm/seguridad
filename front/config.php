@@ -34,8 +34,8 @@
 
 include ('../../../inc/includes.php');
    
-   Html::header(__('seguridad', 'seguridad'), $_SERVER['PHP_SELF'] ,"config", "pluginseguridadseguridad", "seguridad");
- 
+   Html::header(__('seguridad', 'seguridad'), $_SERVER['PHP_SELF'] ,"config", "pluginseguridadseguridad", "PluginSeguridadConfig");
+
 // Check if plugin is activated...
 $plugin = new Plugin();
 if(!$plugin->isInstalled('seguridad') || !$plugin->isActivated('seguridad')) {
