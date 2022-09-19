@@ -5,9 +5,9 @@
    <logo>https://raw.githubusercontent.com/calidadcarm/seguridad/main/img/icon.png</logo>
    <description>
       <short>
-         <es>El plugin seguridad le permite agregar una capa de seguridad sobre la página de Login bloqueando la página durante 5 minutos si se intentan logar más de 3 veces incorrectamente.>
-         <en>The security plugin allows you to add a layer of security over the Login page by locking the page for 5 minutes if you try to login more than 3 times incorrectly.</en>
-         <fr>Le plugin de sécurité vous permet d'ajouter une couche de sécurité sur la page de connexion en verrouillant la page pendant 5 minutes si vous essayez de vous connecter plus de 3 fois de manière incorrecte.</fr>
+         <es>El plugin seguridad le permite agregar una capa de seguridad sobre la página de Login evitando ataques de fuerza bruta.>
+         <en>The security plugin allows you to add a layer of security on top of the login page by preventing brute force attacks.</en>
+         <fr>Le plugin de sécurité vous permet d'ajouter une couche de sécurité en haut de la page de connexion en empêchant les attaques par force brute.</fr>
       </short>
       <long>
          <es>
