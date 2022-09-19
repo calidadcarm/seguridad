@@ -10,12 +10,9 @@ The security plugin allows you to add a layer of security over the Login page by
 put this code on this file: front/login.php
 
 // now we can continue with the process...
-if ($auth->login($login, $password, (isset($_REQUEST["noAUTO"])?$_REQUEST["noAUTO"]:false), $remember, $login_auth)) {
-   Auth::redirectIfAuthenticated();
 } else {
-
-		 //[jmz18g] [inicio] sesion seguridad deshabilitado
-		 //[INICIO] [CRI] JMZ18G SI EL PLUGIN SEGURIDAD ESTA ACTIVO
+	//[jmz18g] [inicio] sesion seguridad deshabilitado
+	//[INICIO] [CRI] JMZ18G SI EL PLUGIN SEGURIDAD ESTA ACTIVO
        $plug = new Plugin();
        if ($plug->isActivated("seguridad")) {
         
@@ -26,3 +23,6 @@ if ($auth->login($login, $password, (isset($_REQUEST["noAUTO"])?$_REQUEST["noAUT
        }		  		          		 		 
       //[FINAL] [CRI] JMZ18G SI EL PLUGIN SEGURIDAD ESTA ACTIVO 
       //[jmz18g] [final] Sesión seguridad deshabilitado
+      
+// we have done at least a good login? No, we exit.
+   Html::nullHeader("Login", $CFG_GLPI["root_doc"] . '/index.php');
