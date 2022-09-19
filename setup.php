@@ -31,7 +31,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-define ('PLUGIN_SEGURIDAD_VERSION', '1.2.0');
+define ('PLUGIN_SEGURIDAD_VERSION', '1.1.0');
 
 /**
  * Init hooks of the plugin.
