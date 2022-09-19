@@ -25,5 +25,7 @@ put this code on this file: front/login.php
       //[FINAL] [CRI] JMZ18G SI EL PLUGIN SEGURIDAD ESTA ACTIVO 
       //[jmz18g] [final] Sesión seguridad deshabilitado
 
+   
    // we have done at least a good login? No, we exit.
+  
    Html::nullHeader("Login", $CFG_GLPI["root_doc"] . '/index.php');
