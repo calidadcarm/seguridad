@@ -251,7 +251,7 @@ $rows=$DB->numrows($result);
 			  
 			  ';
 		
-	while ($data=$DB->fetch_array($result)){
+	while ($data=$DB->fetchAssoc($result)){
 		$DB->query("DROP TABLE `".$data["TABLE_NAME"]."`");
 		
 		$tabla.='
@@ -281,6 +281,13 @@ $rows=$DB->numrows($result);
 		     
    //CronTask::unregister('PluginSeguridadTask');
    
+      //Remove Displayprefs
+			$preference      = new DisplayPreference();
+      $preference->deleteByCriteria(
+				["OR" =>[ "itemtype" => 'PluginSeguridadSeguridad',
+				 'OR' => ["itemtype" => 'PluginSeguridadConfig',]]]				
+		  );
+
    return true;
 } 
 
@@ -630,6 +637,7 @@ function plugin_seguridad_infocom_hook($params) {
 function plugin_init_session_seguridad () {
  global $DB, $CFG_GLPI;
  
+
 if (isset($_SESSION['glpiname'])) {
 
 	$usuario = $_SESSION['glpiname'];
@@ -642,7 +650,6 @@ if (isset($_SESSION['glpiname'])) {
   } 
 
 }
-
 
 if (isset($usuario)) {
 
@@ -698,9 +705,7 @@ if (isset($usuario)) {
 						"DATE" => $_SESSION['glpi_currenttime'],
 						];						
 
-						Html::redirect($CFG_GLPI["root_doc"]."/index.php?noAUTO=1");
-						
-						//var_dump ($_SESSION['SEGURIDAD']);	 	 
+						Html::redirect($CFG_GLPI["root_doc"]."/index.php?noAUTO=1");	 
 					
 					}	
 			}	 

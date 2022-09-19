@@ -34,7 +34,7 @@
 
 include ('../../../inc/includes.php');
 
- Html::header(__('seguridad', 'seguridad'), $_SERVER['PHP_SELF'] ,"config", "PluginSeguridadSeguridad", "seguridad");
+ Html::header(__('seguridad', 'seguridad'), $_SERVER['PHP_SELF'] ,"config", "PluginSeguridadSeguridad", "PluginSeguridadConfig");
 
 $plugin = new Plugin();
 

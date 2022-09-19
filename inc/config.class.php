@@ -35,8 +35,7 @@
 // Class of the defined type
 class PluginSeguridadConfig extends CommonDBTM {
    
-   public $dohistory=true; // EN LA CABECERA
-   static $tags = '[EXAMPLE_ID]';
+   public $dohistory=true; // EN LA CABECERA   
    static $rightname = "plugin_seguridad";
 
    // Should return the localized name of the type
@@ -44,6 +43,10 @@ class PluginSeguridadConfig extends CommonDBTM {
       return 'Configuración de Seguridad';
    }
    
+   static function getIcon() {
+      return "fas fa-cogs";
+   }  
+
    static function canView() {
 
 	return (Session::haveRight(self::$rightname, READ));
@@ -51,14 +54,14 @@ class PluginSeguridadConfig extends CommonDBTM {
    }
    
    static function canCreate() {
-
-	return (Session::haveRight("plugin_seguridad_purge", CREATE));
-
+      
+      return false;
+	
    }   
    
    public function canPurgeItem() {
 
-      return (Session::haveRight("plugin_seguridad_purge", PURGE));
+      return false;
    }   
    
    public function canUpdateItem() {
@@ -79,7 +82,8 @@ class PluginSeguridadConfig extends CommonDBTM {
       $table = getTableForItemType(__CLASS__);
       if (!$DB->TableExists($table)) {
          $query = "CREATE TABLE IF NOT EXISTS `$table` (
-		  `id` int(11) NOT NULL AUTO_INCREMENT,		  
+		  `id` int(11) NOT NULL AUTO_INCREMENT,	
+        `name` varchar(255) collate utf8_unicode_ci default NULL,	  
 		  `intentos` int(11) NOT NULL DEFAULT '0',  
 		  `time_block` int(11) NOT NULL DEFAULT '0',  
 		  PRIMARY KEY (`id`)
@@ -89,8 +93,8 @@ class PluginSeguridadConfig extends CommonDBTM {
 		 
 		// echo $query."<br>";
 		 
- $query = "INSERT INTO `$table` (`id`,`intentos`,`time_block`) 
-	VALUES 	(1,3,300);";
+ $query = "INSERT INTO `$table` (`id`,`name`,`intentos`,`time_block`) 
+	VALUES 	(1,'Configuración de seguridad',3,300);";
 					 // echo $query."<br>";
          $DB->query($query) or die("Error adding Config"); 	
 
@@ -104,6 +108,30 @@ class PluginSeguridadConfig extends CommonDBTM {
 		 Session::addMessageAfterRedirect($tabla);					
 		 
       }  	  
+
+      if (!$DB->fieldExists($table,"name")){ 
+         
+         $DB->query("
+         ALTER TABLE `".$table."` ADD COLUMN `name` varchar(255) collate utf8_unicode_ci default NULL AFTER `id`;
+         ") or die ("Error adding name to table $table");                  
+
+         $DB->query("UPDATE `".$table."` SET `name` = 'Configuración de seguridad' WHERE (`id` = '1');") or die("Error Updating Config"); 	
+         
+      }   
+      
+            //Displayprefs
+      $prefs = [4 => 1, 2 => 2, 3 => 3];
+      foreach ($prefs as $num => $rank) {
+         if (!countElementsInTable("glpi_displaypreferences",
+                                   ['itemtype' => __CLASS__, 'num' => $num, 'users_id' => 0])) {
+            $preference      = new DisplayPreference();
+            $tmp['itemtype'] = __CLASS__;
+            $tmp['num']      = $num;
+            $tmp['rank']     = $rank;
+            $tmp['users_id'] = 0;
+            $preference->add($tmp);
+         }
+      }  
 	  
    } 
 
@@ -135,8 +163,8 @@ class PluginSeguridadConfig extends CommonDBTM {
          'field'              => 'id',
          'name'               => __('ID'),
          'usehaving'          => true,
-         'searchtype'         => 'equals',
-		 'datatype' => 'itemlink',		 		 
+         'searchtype'         => 'equals',		 
+		   'datatype'           => 'number',
       ];
 
 
@@ -159,6 +187,14 @@ class PluginSeguridadConfig extends CommonDBTM {
 		'massiveaction' => false,
 		];
   
+      $tab[] = [
+         'id'                 => '4',
+         'table'              => $this->getTable(),
+         'field'              => 'name',
+         'name'               => __('Name'),	
+         'datatype'           => 'itemlink',		 		 
+      ];
+
       return $tab;
    }   
    

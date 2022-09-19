@@ -170,7 +170,7 @@ class PluginSeguridadSeguridad_User extends CommonDBRelation {
 				 
       if ($result_linked = $DB->query($query)) {
                if ($DB->numrows($result_linked)) {
-                  while ($data = $DB->fetch_assoc($result_linked)) {
+                  while ($data = $DB->fetchAssoc($result_linked)) {
                      $linkname = $data["name"];
                      if ($_SESSION["glpiis_ids_visible"]
                          || empty($data["name"])) {
